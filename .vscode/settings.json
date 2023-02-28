@@ -1,0 +1,4 @@
+{
+    "java.debug.settings.console": "externalTerminal",
+    "java.configuration.updateBuildConfiguration": "automatic"
+}
