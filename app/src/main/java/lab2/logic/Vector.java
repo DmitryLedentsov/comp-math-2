@@ -32,7 +32,6 @@ public class Vector implements Cloneable{
     public double[] getData(){
         return this.vector;
     }
- 
 
     void swap(int i, int j) {
         double tmp = vector[i];
