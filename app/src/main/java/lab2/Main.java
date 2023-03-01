@@ -8,8 +8,14 @@ import lab2.app.App;
 import lab2.logic.methods.HalfDivMethod;
 import lab2.logic.methods.SimpleIterMethod;
 import lab2.plot.Graph;
+import lombok.var;
+
 import static java.lang.Math.*;
+
+
+
 public class Main {
+    
     public static void main(String[] args) {
         //Graph plt = new Graph("aaaa");
         //plt.graph(1, 10, Math::sin);
@@ -32,8 +38,8 @@ public class Main {
         SimpleIterMethod iterm = new SimpleIterMethod();
         iterm.setAccuracy(0.01);
         iterm.setFunction(x->1.8*pow(x, 3)-2.47*pow(x,2)-5.53*x+1.539);
-        iterm.setA(2);
-        iterm.setB(3);
+        iterm.setA(0);
+        iterm.setB(1);
         iterm.solve();
         System.out.println(iterm.getPrintableSolution());
 

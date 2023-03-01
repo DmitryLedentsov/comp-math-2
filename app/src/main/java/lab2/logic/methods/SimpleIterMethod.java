@@ -48,25 +48,24 @@ public class SimpleIterMethod {
     public void solve(){
         n=0;
         
-        x0 = derivativeAtPoint(function, a)>derivativeAtPoint(function, b)?a:b;
-        double lambda = -1/derivativeAtPoint(function, x0);
+        double derA=derivativeAtPoint(function, a),
+        derB=derivativeAtPoint(function, b);
+        x0 = derA>derB?a:b;
+        double lambda = -1/max(derA, derB);
         phi = x->x+lambda*function.call(x);
         xk = x0;
-        xk1 = phi.call(xk);
-        System.out.println(xk);
-        System.out.println(xk1);
-        while(abs(xk1-xk)>accuracy){
+        step(); 
+        save();
+        while(abs(xk1-xk)>=accuracy){
             //if (Math.abs(derivativeAtPoint(phi, xk)) >= 1) throw new IllegalArgumentException("f'(xn) > 1 => cannot converge");
             xk = xk1;
-            xk1 = phi.call(xk);
-            fXk = function.call(xk);
-            fXk1 = function.call(xk1);
-            //System.out.println(xk);
-            //System.out.println(xk1);
-            mod = abs(xk1-xk);
+            step();
             save();
             n++;
         }
+        xk=xk1;
+        step();
+        save();
         
          
     }
