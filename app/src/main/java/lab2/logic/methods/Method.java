@@ -1,5 +1,8 @@
 package lab2.logic.methods;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 import lab2.logic.Function;
 
 public interface Method {
@@ -13,4 +16,12 @@ public interface Method {
     enum Status {
         OK, NOT_CONVERGED, NOT_FOUND
     }
+
+    @Retention(RetentionPolicy.CLASS)
+    @interface Info  {
+        String name() default "";
+        String description() default "";
+    }
+
+   
 }

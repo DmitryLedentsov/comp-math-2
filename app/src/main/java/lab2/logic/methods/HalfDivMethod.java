@@ -9,6 +9,7 @@ import static java.lang.Math.*;
 import java.util.ArrayList;
 import java.util.List;
 @NoArgsConstructor
+
 public class HalfDivMethod {
     @Getter @Setter
     private Function function;
@@ -64,6 +65,7 @@ public class HalfDivMethod {
         for(double[] d: table){
             s += String.format("%d %.5f %.5f %.5f %.5f %.5f %.5f %.5f %n", count, d[0], d[1], d[2], d[3], d[4], d[5], d[6]);
             count++;
+            
         }
         return s;
     }
