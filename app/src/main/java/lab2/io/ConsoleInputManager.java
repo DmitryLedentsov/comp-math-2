@@ -8,22 +8,8 @@ public class ConsoleInputManager extends InputManagerImpl{
         super(new Scanner(System.in));
     }
 
-    public int readDimension() {
-       
-        return new Question<Integer> ("Введите размерность: ",super::readDimension).getAnswer();
-    }
+    
 
-    public double[] readEquation(int d){
-       
-        Question<double[]> q = new Question<double[]>("уравнение " + line + ": ", ()->super.readEquation(d));
-        return q.getAnswer();
-    }
-    /*
-    public LinearSystem readLinearSystem() {
-        
-        System.out.println("Введите систему в виде матрицы коэффициентов и столбца свободных членов:");
-        return super.readLinearSystem();
-    }*/
 
 
     public int readCommand() {

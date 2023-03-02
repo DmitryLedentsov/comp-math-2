@@ -78,7 +78,7 @@ public class App {
     }
 
     public void run(){
-        int cmd = in.readCommand();
+        int cmd = in.readOptions(1,2);
       
         if(cmd == 3) {
             stop();

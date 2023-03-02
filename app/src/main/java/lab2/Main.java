@@ -35,15 +35,22 @@ public class Main {
 
         System.out.println();
 
+        //SimpleIterMethod iterm = new SimpleIterMethod();
+        //iterm.setAccuracy(0.01);
+        //iterm.setFunction(x->1.8*pow(x, 3)-2.47*pow(x,2)-5.53*x+1.539);
+        //iterm.setA(0);
+        //iterm.setB(1);
+        //iterm.solve();
+        //System.out.println(iterm.getPrintableSolution());
+
         SimpleIterMethod iterm = new SimpleIterMethod();
         iterm.setAccuracy(0.01);
-        iterm.setFunction(x->1.8*pow(x, 3)-2.47*pow(x,2)-5.53*x+1.539);
-        iterm.setA(0);
-        iterm.setB(1);
+        iterm.setA(-2);
+        iterm.setB(0);
+        iterm.setFunction(x->pow(x,3)-x+4);
+
         iterm.solve();
         System.out.println(iterm.getPrintableSolution());
-
-
         
     }
 }

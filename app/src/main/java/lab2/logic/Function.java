@@ -22,5 +22,9 @@ public interface Function {
             return x -> (x + (-1 / derivativeAtPoint(f, x0)) * f.call(x));
            // return x -> (x + (-1 / derivativeAtPoint(f, x)) * f.call(x));
         }
+        public static boolean checkFunctionHasRoots(Function f, double a, double b){
+            return (f.call(a)*f.call(b)<0);
+        }
+       
     }
 }

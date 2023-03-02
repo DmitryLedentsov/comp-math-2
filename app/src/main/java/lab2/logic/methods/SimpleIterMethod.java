@@ -64,8 +64,8 @@ public class SimpleIterMethod {
             n++;
         }
         xk=xk1;
-        step();
-        save();
+        //step();
+        //save(); TODO: check if this is needed
         
          
     }
