@@ -41,17 +41,30 @@ public class InputManagerImpl implements InputManager{
 
 
 
-    public int readCommand() {
+    public double readAccuracy() {
         try{
-            int command = Integer.parseInt(readLine());
-            if(command < 1 || command > 3)
-                throw new IllegalArgumentException("Неверный формат команды");
-            return command;
+            double a = Double.parseDouble(readLine());
+            if(a >= 1)
+                throw new IllegalArgumentException("Неправильно задана точность");
+            return a;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Неверный формат команды");
+            throw new IllegalArgumentException("Неверный формат числа");
         }
-         
-    
+    }
+    public double[] readInterval(){
+        try{
+            String[] s = readLine().split(" ");
+            if(s.length != 2)
+                throw new IllegalArgumentException("Неверный формат");
+            double[] r = new double[2];
+            r[0] = Double.parseDouble(s[0]);
+            r[1] = Double.parseDouble(s[1]);
+            if(r[0] >= r[1])
+                throw new IllegalArgumentException("Неверный формат");
+            return r;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Неверный формат числа");
+        }
     }
     public String readPath() {
         String fileName = readLine();
