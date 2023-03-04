@@ -45,8 +45,9 @@ public class HalfDivMethod {
     //a b x f(a) f(b) f(x) |a-b|
     public void solve(){
         step();
+
         n = 1;
-        while(mod>accuracy && abs(fX)>accuracy){
+        while(mod>accuracy /*&& abs(fX)>=accuracy*/){
             save();
             if(fA*fX>0){
                 a = x;
@@ -61,7 +62,7 @@ public class HalfDivMethod {
 
     public String getPrintableSolution(){
         String s = "";
-        int count = 1;
+        int count = 0;
         for(double[] d: table){
             s += String.format("%d %.5f %.5f %.5f %.5f %.5f %.5f %.5f %n", count, d[0], d[1], d[2], d[3], d[4], d[5], d[6]);
             count++;

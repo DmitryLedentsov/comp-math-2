@@ -69,6 +69,9 @@ public class SimpleIterMethod {
         
          
     }
+    public double getX(){
+        return xk;
+    }
     public String getPrintableSolution(){
         String s = "";
         for(double[] row: table){

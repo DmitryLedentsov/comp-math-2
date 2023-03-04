@@ -31,12 +31,39 @@ public class SecMethod {
     double f(double x){
         return function.call(x);
     }
-    void solve(){
-        x=0; x_prev=a; x_next=b;
+    void step(){
+        x_next = x - f(x) * (x-x_prev) / (f(x) - f(x_prev));
+        abs = abs(x_next-x);
+        fXnext=f(x);
+    }
+    public void solve(){
+        x=0; x_prev=a; x=b;
         n = 1;
-        while(abs(x-x_prev)>accuracy && abs(Fx)>accuracy){
+        double tmp=0;
+        step();
+        save();
+  
+        while(abs(x_next-x)>accuracy){
+            tmp=x_next;
             
+            x_prev=x;
+            x=tmp;
+            step();
+            save();
         }
+        
+        x=x_next;
+    }
+
+    public String getPrintableSolution(){
+        String s = "";
+        for(double[] row: table){
+            s += String.format("%-10.6f %-10.6f %-10.6f %-10.6f %-10.6f\n", row[0], row[1], row[2], row[3],row[4]);
+        }
+        return s;
+    }
+    public double getX(){
+        return x_next;
     }
 
 
