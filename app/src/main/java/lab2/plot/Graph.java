@@ -9,9 +9,11 @@ import java.util.List;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYItemRenderer;
+import org.jfree.chart.renderer.xy.XYSplineRenderer;
 import org.jfree.chart.ui.ApplicationFrame;
 import org.jfree.chart.util.PaintAlpha;
 import org.jfree.data.xy.XYDataset;
@@ -29,7 +31,7 @@ import lombok.Data;
 public class Graph extends ApplicationFrame {
     public static final double DEFAULT_STEP = 0.05;
     public static final double SYSTEM_STEP = 0.001;
-    public static final double SEARCH_ACCURACY = 1e-5;
+    public static final double SEARCH_ACCURACY = 1e-4;
     public Graph(String title) {
         super(title);
     }
@@ -46,12 +48,17 @@ public class Graph extends ApplicationFrame {
                 true,
                 false
         );
+        /*NumberAxis domain = new NumberAxis("X");
+        NumberAxis range = new NumberAxis("Y");
+        XYSplineRenderer r = new XYSplineRenderer(1);
+        XYPlot xyplot = new XYPlot(dataset, domain, range, r);
+         chart = new JFreeChart(xyplot);*/
 
         ChartPanel panel = new ChartPanel(chart);
         panel.setFillZoomRectangle(false);
         panel.setDomainZoomable(true);
-        panel.setRangeZoomable(true);
-        panel.setMouseWheelEnabled(true);
+        //panel.setRangeZoomable(true);
+        //panel.setMouseWheelEnabled(true);
         panel.setDisplayToolTips(true);
         
         pack();
@@ -88,29 +95,25 @@ public class Graph extends ApplicationFrame {
             XYSeries series = new XYSeries(f.hashCode());
             List<Point> low = new LinkedList<>();
             Point start= null;
-            for (double x=from; x<=to; x+=SYSTEM_STEP)
-                for (double y=from;y<=to;y+=SYSTEM_STEP)
+            for (double x=from; x<to; x+=SYSTEM_STEP)
+                for (double y=from;y<to;y+=SYSTEM_STEP)
                     if (Math.abs(f.call(x, y))<=SEARCH_ACCURACY){
                         if(start == null){
                             start = new Point(x,y);
                         }
-                        if(y>start.y+SEARCH_ACCURACY)
+                        if(y>start.y)
                             series.add(x,y);
                         else
                             low.add(new Point(x, y));
                     }
-                 
-    
             dataset.addSeries(series);
+
             series = new XYSeries(f.hashCode()+1);
             for(Point p: low){
                 series.add(p.x,p.y);
             }
-            
-          
-            
-            dataset.addSeries(series);
 
+            dataset.addSeries(series);
             
         }
         initChart(dataset);
