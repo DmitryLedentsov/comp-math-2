@@ -79,8 +79,9 @@ public class Main {
         nm.setY0(2);
         nm.setSystem(NonlinearSystem.of((x,y)->pow(x,2)+pow(y,2)-4, (x,y)->y-3*pow(x,2)));
         nm.solve();
-        System.out.println(Arrays.toString(nm.getSolution()));
-        new Graph("aaa").system(-10, 10, (x,y)->pow(x,2)+pow(y,2)-4, (x,y)->y-3*pow(x,2));
+        System.out.println(nm.getSolution().toString());
+        System.out.println(nm.getErrors().toString());
+        new Graph("ХУЙ").system(-10, 10, (x,y)->pow(x,2)+pow(y,2)-4, (x,y)->y-3*pow(x,2));
         //new Graph("bbb").graph(-10, 10, x->x*x);
     }
 }

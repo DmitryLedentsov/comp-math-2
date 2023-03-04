@@ -4,10 +4,14 @@ import lab2.logic.BinaryFunction;
 import lab2.logic.LinearSystem;
 import lab2.logic.LinearSystemSolver;
 import lab2.logic.NonlinearSystem;
+import lab2.logic.Vector;
 import lombok.Getter;
 import lombok.Setter;
 import static lab2.logic.BinaryFunction.Utils.*;
+import static java.lang.Math.*;
+import lab2.exceptions.DivergeException;
 public class NewtonMethod {
+    public static final int MAX_ITERATIONS = 1000;
     @Getter @Setter
     private NonlinearSystem system;
     @Getter
@@ -19,7 +23,9 @@ public class NewtonMethod {
     @Setter @Getter
     private double accuracy;
     @Getter
-    private double[] solution;
+    private Vector solution;
+    @Getter
+    private Vector errors;
     public NewtonMethod(){
         solver = new LinearSystemSolver();
     }
@@ -36,7 +42,7 @@ public class NewtonMethod {
         double yn = y0;
         int iter = 0;
 
-        while (iter < 1000) {
+        while (iter < MAX_ITERATIONS) {
 
             solver.setSystem(LinearSystem.of(2, 
                 f1d_x.call(xn, yn), f1d_y.call(xn, yn), -f1.call(xn, yn),
@@ -45,18 +51,22 @@ public class NewtonMethod {
             solver.solve();
 
 
-            solution = solver.getSolution().getData();
-            double xNext = xn + solution[0];
-            double yNext = yn + solution[1];
-            if ((Math.abs(solution[0]) < accuracy) && (Math.abs(solution[1]) < accuracy)) {
-                solution[0] = xNext;
-                solution[1] = yNext;
+            solution = solver.getSolution();
+            double xNext = xn + solution.get(0);
+            double yNext = yn + solution.get(1);
+            if ((Math.abs(solution.get(0)) < accuracy) && (Math.abs(solution.get(1)) < accuracy)) {
+                solution.set(0,xNext);
+                solution.set(1,yNext);
+                errors = new Vector(2);
+                errors.set(0, abs(xNext-xn));
+                errors.set(1, abs(yNext-yn));
                 return;
             }
             iter++;
             xn = xNext;
             yn = yNext;
         }
+        throw new DivergeException();
 
     }
 }
