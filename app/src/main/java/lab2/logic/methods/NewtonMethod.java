@@ -37,10 +37,6 @@ public class NewtonMethod {
         int iter = 0;
 
         while (iter < 1000) {
-            double[][] matrix = new double[][]{
-                    {f1d_x.call(xn, yn), f1d_y.call(xn, yn), -f1.call(xn, yn)},
-                    {f2d_x.call(xn, yn), f2d_y.call(xn, yn), -f2.call(xn, yn)}
-            };
 
             solver.setSystem(LinearSystem.of(2, 
                 f1d_x.call(xn, yn), f1d_y.call(xn, yn), -f1.call(xn, yn),
