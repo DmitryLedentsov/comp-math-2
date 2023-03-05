@@ -55,7 +55,7 @@ public class SimpleIterMethod implements Method{
         mod = round(mod,3);
     }
     public void solve(){
-        n=0;
+        n=1;
         
         double derA=derivativeAtPoint(function, a),
         derB=derivativeAtPoint(function, b);

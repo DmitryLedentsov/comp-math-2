@@ -2,7 +2,6 @@ package lab2.app;
 
 import lab2.logic.Function;
 import lombok.Getter;
-import lombok.Setter;
 import static java.lang.Math.*;
 /*
 0 - x^3 + 2.28x^2 - 1.934x - 3.907

@@ -5,25 +5,18 @@ package lab2.app;
 
 
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import lab2.exceptions.FileException;
 import lab2.exceptions.NoRootException;
 import lab2.io.ConsoleInputManager;
 import lab2.io.ConsoleOutputManager;
 import lab2.io.FileInputManager;
 import lab2.io.FileOutputManager;
 import lab2.io.InputManager;
-import lab2.io.MultipleOutputManager;
 import lab2.io.OutputManager;
-import lab2.logic.BinaryFunction;
 import lab2.logic.Function;
 import lab2.logic.NonlinearSystem;
 import lab2.logic.methods.Method;
 import lab2.logic.methods.NewtonMethod;
 import lab2.plot.Graph;
-import lab2.utils.DoubleFormatter;
 import lombok.Cleanup;
 import lombok.Getter;
 import lombok.Setter;

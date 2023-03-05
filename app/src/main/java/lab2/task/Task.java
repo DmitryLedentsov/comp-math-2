@@ -1,11 +1,8 @@
 package lab2.task;
 
-import lab2.app.App;
 import lab2.logic.Function;
-import lab2.logic.NonlinearSystem;
 import lab2.logic.methods.HalfDivMethod;
 import lab2.logic.methods.HordMethod;
-import lab2.logic.methods.NewtonMethod;
 import lab2.logic.methods.SimpleIterMethod;
 import static java.lang.Math.*;
 public class Task {

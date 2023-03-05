@@ -46,7 +46,7 @@ public class HordMethod implements Method{
         fB = f(b);
         fX = f(x);
         mod = abs(x-x_prev);
-        rnd();
+        //rnd();
         //rnd(); //TODO: remove
     }
     double f(double x){

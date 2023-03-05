@@ -2,7 +2,6 @@ package lab2.plot;
 
 
 import java.awt.Color;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,13 +10,9 @@ import javax.swing.JFrame;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYItemRenderer;
-import org.jfree.chart.renderer.xy.XYSplineRenderer;
-import org.jfree.chart.ui.ApplicationFrame;
-import org.jfree.chart.util.PaintAlpha;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
