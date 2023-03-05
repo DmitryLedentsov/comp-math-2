@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 @NoArgsConstructor
 
-public class HalfDivMethod {
+public class HalfDivMethod implements Method{
     @Getter @Setter
     private Function function;
     @Getter @Setter

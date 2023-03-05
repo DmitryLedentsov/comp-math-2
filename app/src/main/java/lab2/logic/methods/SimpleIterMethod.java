@@ -1,7 +1,7 @@
 package lab2.logic.methods;
 
 import lab2.logic.Function;
-import lab2.logic.methods.Method.Status;
+
 import lombok.Getter;
 import lombok.Setter;
 import static lab2.logic.Function.Utils.*;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.*;
-public class SimpleIterMethod {
+public class SimpleIterMethod implements Method{
     @Setter
     Function function;
     @Setter
@@ -19,8 +19,7 @@ public class SimpleIterMethod {
     double b;
     @Setter
     double accuracy;
-    @Getter @Setter 
-    private Status status;
+
     @Getter
     private List<double[]> table = new ArrayList<>();
     double x0;
@@ -78,6 +77,10 @@ public class SimpleIterMethod {
             s += String.format("%-10.6f %-10.6f %-10.6f %-10.6f\n", row[0], row[1], row[2], row[3]);
         }
         return s;
+    }
+
+    public double getFX(){
+        return function.call(getX());
     }
 
 

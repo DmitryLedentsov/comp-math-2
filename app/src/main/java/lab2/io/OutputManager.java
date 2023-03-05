@@ -1,7 +1,15 @@
 package lab2.io;
 
-public interface OutputManager {
-    public void print(String message);
+public interface OutputManager extends AutoCloseable{
+    public default void print(String message){
+        add(message);
+        add("\n");
+    };
     public void add(String message);
-    public void error(String message);
+    public default void error(String message){
+        add("ОШИБКА: \n");
+        add(message);
+        add("\n");
+    }
+    public default void close(){};
 }

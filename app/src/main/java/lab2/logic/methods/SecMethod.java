@@ -7,7 +7,7 @@ import static java.lang.Math.*;
 
 import java.util.ArrayList;
 import java.util.List;
-public class SecMethod {
+public class SecMethod implements Method{
     @Getter @Setter
     private Function function;
     @Getter @Setter
@@ -64,6 +64,9 @@ public class SecMethod {
     }
     public double getX(){
         return x_next;
+    }
+    public double getFX(){
+        return function.call(getX());
     }
 
 

@@ -81,7 +81,10 @@ public class Main {
         nm.solve();
         System.out.println(nm.getSolution().toString());
         System.out.println(nm.getErrors().toString());
-        new Graph("ХУЙ").system(-10, 10, (x,y)->pow(x,2)+pow(y,2)-4, (x,y)->y-3*pow(x,2));
+        //new Graph("ХУЙ").system(-10, 10, (x,y)->pow(x,2)+pow(y,2)-4, (x,y)->y-3*pow(x,2));
         //new Graph("bbb").graph(-10, 10, x->x*x);
+
+
+        App.getInstanse().start();
     }
 }

@@ -1,5 +1,9 @@
 package lab2.io;
 
+import lab2.app.Equations;
+import lab2.app.Methods;
+import lab2.logic.methods.Method;
+
 public interface InputManager extends AutoCloseable{
 
     public String readLine();
@@ -9,5 +13,9 @@ public interface InputManager extends AutoCloseable{
    // public LinearSystem readLinearSystem();
     
     public String readPath();
+    public int readCommand();
+    public Equations readEquation();
+    public Methods readMethod();
+    public int readFileOrConsole();
 
 }

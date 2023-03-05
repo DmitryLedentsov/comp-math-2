@@ -8,13 +8,20 @@ package lab2.app;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import lab2.exceptions.FileException;
+import lab2.exceptions.NoRootException;
 import lab2.io.ConsoleInputManager;
 import lab2.io.ConsoleOutputManager;
 import lab2.io.FileInputManager;
+import lab2.io.FileOutputManager;
 import lab2.io.InputManager;
+import lab2.io.MultipleOutputManager;
 import lab2.io.OutputManager;
-
+import lab2.logic.Function;
+import lab2.logic.methods.Method;
+import lab2.plot.Graph;
 import lab2.utils.DoubleFormatter;
+import lombok.Cleanup;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -67,8 +74,13 @@ public class App {
         printGreetings();
         //test();
         while (running) {
-            run();
+            try{
+                run();
+            } catch(Exception e){
+                out.error(e.getMessage());
+            }
         }
+        exit();
   
     }
     void printSolution(){
@@ -77,16 +89,58 @@ public class App {
         
     }
 
-    public void run(){
-        int cmd = in.readOptions(1,2);
+    public void run() throws Exception{
+        int cmd = in.readCommand();
       
+
         if(cmd == 3) {
             stop();
             return;
         }
         if(cmd == 1) {
             
-            printSolution();  
+            Function f = in.readEquation().getFunction();
+            double[] interval=null;
+            double accuracy;
+            boolean readFromFile  = in.readFileOrConsole()==2;
+            if(readFromFile){
+                String path = in.readPath();
+          
+                @Cleanup InputManager fin =new FileInputManager(path);
+                interval = fin.readInterval();
+                accuracy = fin.readAccuracy();
+            }else{
+                interval = in.readInterval();
+                accuracy = in.readAccuracy();
+            }
+
+            Graph g = new Graph("График функции");
+            g.graph(interval[0], interval[1], f);
+
+            Method m = in.readMethod().getMethod();
+            
+            m.setFunction(f);
+            m.setA(interval[0]);
+            m.setB(interval[1]);
+            m.setAccuracy(accuracy);
+            if(!Function.Utils.checkFunctionHasRoot(f, interval[0], interval[1])) throw new NoRootException();
+            m.solve();
+
+
+            boolean writeToFile  = in.readFileOrConsole()==2;
+            if(writeToFile){
+                String path = in.readPath();
+          
+                OutputManager fout =new FileOutputManager(path);
+
+                fout.print(m.formatSolution());
+         
+            }
+            out.print(m.formatSolution());
+            
+            
+            
+
         }
         else if(cmd == 2) {
             String path = in.readPath();

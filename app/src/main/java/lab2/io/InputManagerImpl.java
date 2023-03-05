@@ -4,12 +4,18 @@ import java.util.Scanner;
 
 import org.jfree.chart.util.ArrayUtils;
 
+import lab2.app.Equations;
+import lab2.app.Methods;
 import lab2.logic.Vector;
 
-public class InputManagerImpl implements InputManager{
+public abstract class InputManagerImpl implements InputManager{
     protected Scanner scanner;
     protected int line;
     public InputManagerImpl(Scanner s) {
+        init(s);
+    }
+    public InputManagerImpl(){};
+    void init(Scanner s){
         scanner = s;
     }
     public void print(String message) {
@@ -36,9 +42,42 @@ public class InputManagerImpl implements InputManager{
             throw new IllegalArgumentException("Неверный формат");
         }
     }
+    public int readNumberFromInterval(int a, int b){
+        try{
+            int r = Integer.parseInt(readLine());
+            if(r>b || r<a)
+                throw new IllegalArgumentException("Неверный формат");
+            return r;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Неверный формат");
+        }
+    }
 
 
+    public int readCommand(){
+        return readOptions(1,2,3);
+    }
+    
+    private int readEquationN(){
 
+        return readNumberFromInterval(0, Equations.values().length-1);
+    }
+    public Equations readEquation(){
+        return Equations.choose(readEquationN());
+    }
+    private int readMethodN(){
+
+        return readNumberFromInterval(0, Methods.values().length-1);
+    }
+    public Methods readMethod(){
+        return Methods.choose(readMethodN());
+    }
+
+    
+
+    public int readFileOrConsole(){
+        return readOptions(1,2);
+    }
 
 
     public double readAccuracy() {

@@ -3,33 +3,32 @@ package lab2.io;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Scanner;
+import java.io.PrintStream;
 
 import lab2.exceptions.FileException;
+import lombok.Getter;
 
-public class FileInputManager  extends InputManagerImpl{
+public class FileOutputManager  extends OutputManagerImpl{
+    @Getter
     String path;
-    public FileInputManager(String path) throws FileException {
-        super();
-        this.path = path; 
+    public FileOutputManager(String path) throws FileException{
+        this.path = path;
         try{
-            init(new Scanner(new File(path)));
+            init(new PrintStream(new File(path)));
+            print("Вывод:\n");
         } catch(FileNotFoundException e) {
+            
             throw new FileException("Файл "+ path + " не найден");
         } catch (IOException e) {
-            throw new FileException("Ошибка при чтении файла " + path);
+            throw new FileException("Ошибка при записи в файл " + path);
         } catch (IllegalArgumentException e) {
             throw new FileException("Данные в файле некорректны: " + e.getMessage());
         } catch (Exception e) {
             throw new FileException("Неизвестная ошибка");
         }
-       
-
     }
-    @Override 
-    public void close() {
-        super.close();
+    public void close(){
+        out.close();
     }
 
-    
 }

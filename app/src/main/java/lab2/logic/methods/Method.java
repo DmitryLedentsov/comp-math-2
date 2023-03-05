@@ -12,10 +12,8 @@ public interface Method {
     void setFunction(Function function);
     void solve();
     double getX();
-    Status getStatus();
-    enum Status {
-        OK, NOT_CONVERGED, NOT_FOUND
-    }
+    int getN();
+    double getFX();
 
     @Retention(RetentionPolicy.CLASS)
     @interface Info  {
@@ -23,5 +21,10 @@ public interface Method {
         String description() default "";
     }
 
+    public default String formatSolution(){
+        String s = "число итераций: " + getN() + "\n";
+        s+= "корень: " + getX();
+        return s;
+    }
    
 }

@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.JFrame;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -28,7 +30,7 @@ import lombok.Data;
 
 
 
-public class Graph extends ApplicationFrame {
+public class Graph extends JFrame {
     public static final double DEFAULT_STEP = 0.05;
     public static final double SYSTEM_STEP = 0.001;
     public static final double SEARCH_ACCURACY = 1e-4;
@@ -131,5 +133,10 @@ public class Graph extends ApplicationFrame {
     @AllArgsConstructor
     static class Point{
         double x,y;
+    }
+
+    public void close(){
+        setVisible(false); //you can't see me!
+        dispose(); //Destroy the JFrame object
     }
 }
