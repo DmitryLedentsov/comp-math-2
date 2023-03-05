@@ -26,6 +26,9 @@ public class NewtonMethod {
     private Vector solution;
     @Getter
     private Vector errors;
+
+    @Getter 
+    int n;
     public NewtonMethod(){
         solver = new LinearSystemSolver();
     }
@@ -40,9 +43,9 @@ public class NewtonMethod {
 
         double xn = x0;
         double yn = y0;
-        int iter = 0;
+        n = 0;
 
-        while (iter < MAX_ITERATIONS) {
+        while (n < MAX_ITERATIONS) {
 
             solver.setSystem(LinearSystem.of(2, 
                 f1d_x.call(xn, yn), f1d_y.call(xn, yn), -f1.call(xn, yn),
@@ -62,7 +65,7 @@ public class NewtonMethod {
                 errors.set(1, abs(yNext-yn));
                 return;
             }
-            iter++;
+            n++;
             xn = xNext;
             yn = yNext;
         }

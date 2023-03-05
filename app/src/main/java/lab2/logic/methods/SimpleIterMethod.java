@@ -1,6 +1,7 @@
 package lab2.logic.methods;
 
 import lab2.exceptions.DivergeException;
+import lab2.exceptions.IterationLimitExceedException;
 import lab2.logic.Function;
 
 import lombok.Getter;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.*;
+import static lab2.utils.MathUtils.*;
 public class SimpleIterMethod implements Method{
     @Setter
     Function function;
@@ -44,6 +46,13 @@ public class SimpleIterMethod implements Method{
         fXk = function.call(xk);
         fXk1 = function.call(xk1);
         mod = abs(xk1-xk);
+        //rnd();
+    }
+    void rnd(){
+        xk1 = round(xk1, 3);
+        fXk = round(fXk, 3);
+        fXk1 = round(fXk1, 3);
+        mod = round(mod,3);
     }
     public void solve(){
         n=0;
@@ -66,6 +75,8 @@ public class SimpleIterMethod implements Method{
             step();
             save();
             n++;
+
+            if(n>MAX_ITERATIONS) throw new IterationLimitExceedException();
         }
         xk=xk1;
         //step();
@@ -76,10 +87,12 @@ public class SimpleIterMethod implements Method{
     public double getX(){
         return xk;
     }
-    public String getPrintableSolution(){
+    public String getSolutionWay(){
         String s = "";
+        int count = 0;
         for(double[] row: table){
-            s += String.format("%-10.6f %-10.6f %-10.6f %-10.6f\n", row[0], row[1], row[2], row[3]);
+            s += String.format("%d %.3f %.3f %.3f %.3f\n", count, row[0], row[1], row[2], row[3]);
+            count++;
         }
         return s;
     }

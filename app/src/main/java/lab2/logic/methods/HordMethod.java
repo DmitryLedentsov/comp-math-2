@@ -1,16 +1,14 @@
 package lab2.logic.methods;
 
-import lab2.logic.Function;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import static java.lang.Math.*;
-import static lab2.utils.MathUtils.*;
 import java.util.ArrayList;
 import java.util.List;
-@NoArgsConstructor
 
-public class HalfDivMethod implements Method{
+import lab2.logic.Function;
+import lombok.Getter;
+import lombok.Setter;
+import static lab2.utils.MathUtils.*;
+import static java.lang.Math.*;
+public class HordMethod implements Method{
     @Getter @Setter
     private Function function;
     @Getter @Setter
@@ -27,6 +25,7 @@ public class HalfDivMethod implements Method{
     private double fX;
     private double fB;
     private double mod;
+    private double x_prev;
     @Getter
     private int n;
     @Getter
@@ -41,12 +40,17 @@ public class HalfDivMethod implements Method{
         mod = round(mod, 3);
     }
     void step(){
-        x = (a+b)/2;
-        fA = function.call(a);
-        fB = function.call(b);
-        fX = function.call(x);
-        mod = abs(a-b);
+        x_prev =x;
+        x = (a*f(b)-b*f(a))/(f(b)-f(a));
+        fA = f(a);
+        fB = f(b);
+        fX = f(x);
+        mod = abs(x-x_prev);
+        rnd();
         //rnd(); //TODO: remove
+    }
+    double f(double x){
+        return function.call(x);
     }
     void save(){
         table.add(new double[]{a,b,x,fA,fB,fX,mod});
@@ -56,12 +60,12 @@ public class HalfDivMethod implements Method{
         step();
 
         n = 1;
-        while(mod>accuracy){
+        while(abs(x-x_prev)>accuracy /*&& abs(fX)>=accuracy*/){
             save();
-            if(fA*fX>0){
-                a = x;
+            if(fA*fX<0){
+                b=x;
             }else{
-                b = x;
+                a = x;
             }
             n++;
             step();
@@ -79,6 +83,4 @@ public class HalfDivMethod implements Method{
         }
         return s;
     }
-
-
 }

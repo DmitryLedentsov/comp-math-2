@@ -1,5 +1,6 @@
 package lab2.logic.methods;
 
+import lab2.exceptions.IterationLimitExceedException;
 import lab2.logic.Function;
 import lombok.Getter;
 import lombok.Setter;
@@ -50,12 +51,14 @@ public class SecMethod implements Method{
             x=tmp;
             step();
             save();
+            n+=1;
+            if(n>MAX_ITERATIONS) throw new IterationLimitExceedException();
         }
         
         x=x_next;
     }
 
-    public String getPrintableSolution(){
+    public String getSolutionWay(){
         String s = "";
         for(double[] row: table){
             s += String.format("%-10.6f %-10.6f %-10.6f %-10.6f %-10.6f\n", row[0], row[1], row[2], row[3],row[4]);

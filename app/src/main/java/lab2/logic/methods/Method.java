@@ -6,6 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import lab2.logic.Function;
 
 public interface Method {
+    final static int MAX_ITERATIONS = 1000;
     void setA(double a);
     void setB(double b);
     void setAccuracy(double accuracy);
@@ -27,7 +28,7 @@ public interface Method {
         s+= "значение функции в корне: " + getFX() + '\n';
         return s;
     }
-    public default String getPrintableSolution(){
+    public default String getSolutionWay(){
         return "";
     }
 }
