@@ -4,8 +4,11 @@ import java.util.Scanner;
 
 import org.jfree.chart.util.ArrayUtils;
 
+import lab2.app.BinaryEquations;
 import lab2.app.Equations;
 import lab2.app.Methods;
+import lab2.logic.BinaryFunction;
+import lab2.logic.NonlinearSystem;
 import lab2.logic.Vector;
 
 public abstract class InputManagerImpl implements InputManager{
@@ -65,6 +68,14 @@ public abstract class InputManagerImpl implements InputManager{
     public Equations readEquation(){
         return Equations.choose(readEquationN());
     }
+
+    private int readBinaryEquationsN(){
+
+        return readNumberFromInterval(0, Equations.values().length-1);
+    }
+    public BinaryEquations readBinaryEquation(){
+        return BinaryEquations.choose(readBinaryEquationsN());
+    }
     private int readMethodN(){
 
         return readNumberFromInterval(0, Methods.values().length-1);
@@ -104,6 +115,27 @@ public abstract class InputManagerImpl implements InputManager{
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Неверный формат числа");
         }
+    }
+
+    public double[] readPoint(){
+        try{
+            String[] s = readLine().split(" ");
+            if(s.length != 2)
+                throw new IllegalArgumentException("Неверный формат");
+            double[] r = new double[2];
+            r[0] = Double.parseDouble(s[0]);
+            r[1] = Double.parseDouble(s[1]);
+            return r;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Неверный формат числа");
+        }
+    }
+
+    public NonlinearSystem readNonlinearSystem(){
+        BinaryFunction f1 = readBinaryEquation().getFunction();
+        BinaryFunction f2 = readBinaryEquation().getFunction();
+        if(f1==f2) throw new IllegalArgumentException("выберите разные уравнения");
+        return NonlinearSystem.of(f1, f2);
     }
     public String readPath() {
         String fileName = readLine();

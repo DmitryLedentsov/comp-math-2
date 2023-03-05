@@ -24,6 +24,7 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 import lab2.logic.BinaryFunction;
 import lab2.logic.Function;
+import lab2.logic.NonlinearSystem;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -87,6 +88,9 @@ public class Graph extends JFrame {
         return dataset;
     }
 
+    public void system(double from, double to, NonlinearSystem s){
+        system(from, to, s.getFirst(), s.getSecond());
+    }
     public void system(double from, double to, BinaryFunction f1, BinaryFunction f2) {
         XYSeriesCollection dataset = new XYSeriesCollection();
    

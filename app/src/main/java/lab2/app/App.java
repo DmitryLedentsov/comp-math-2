@@ -17,8 +17,11 @@ import lab2.io.FileOutputManager;
 import lab2.io.InputManager;
 import lab2.io.MultipleOutputManager;
 import lab2.io.OutputManager;
+import lab2.logic.BinaryFunction;
 import lab2.logic.Function;
+import lab2.logic.NonlinearSystem;
 import lab2.logic.methods.Method;
+import lab2.logic.methods.NewtonMethod;
 import lab2.plot.Graph;
 import lab2.utils.DoubleFormatter;
 import lombok.Cleanup;
@@ -145,7 +148,23 @@ public class App {
 
         }
         else if(cmd == 2) {
-           
+            NonlinearSystem s = in.readNonlinearSystem();
+            double[] p= in.readPoint();
+
+            double accuracy = in.readAccuracy();
+            
+            NewtonMethod m = new NewtonMethod();
+            m.setAccuracy(accuracy);
+            m.setX0(p[0]);
+            m.setY0(p[1]);
+            m.setSystem(s);
+
+            Graph g = new Graph("График системы");
+            g.system(p[0]-5, p[0]+5, s);
+
+            m.solve();
+            out.print("решение: " + m.getSolution());
+            out.print("вектор ошибок: " + m.getErrors());
         }  
     }
 
