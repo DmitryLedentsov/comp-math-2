@@ -63,6 +63,7 @@ public class Graph extends JFrame {
         //panel.setRangeZoomable(true);
         //panel.setMouseWheelEnabled(true);
         panel.setDisplayToolTips(true);
+        chart.setElementHinting(true);//
         
         pack();
         setSize(800, 600);
