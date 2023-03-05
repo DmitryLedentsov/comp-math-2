@@ -131,6 +131,7 @@ public class App {
             if(writeToFile){
                 String path = in.readPath();
           
+                @Cleanup
                 OutputManager fout =new FileOutputManager(path);
 
                 fout.print(m.formatSolution());

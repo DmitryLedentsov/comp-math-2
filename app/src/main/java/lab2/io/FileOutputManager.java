@@ -15,7 +15,7 @@ public class FileOutputManager  extends OutputManagerImpl{
         this.path = path;
         try{
             init(new PrintStream(new File(path)));
-            print("Вывод:\n");
+            print("Вывод:");
         } catch(FileNotFoundException e) {
             
             throw new FileException("Файл "+ path + " не найден");

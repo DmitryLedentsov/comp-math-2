@@ -1,5 +1,6 @@
 package lab2.logic.methods;
 
+import lab2.exceptions.DivergeException;
 import lab2.logic.Function;
 
 import lombok.Getter;
@@ -49,9 +50,13 @@ public class SimpleIterMethod implements Method{
         
         double derA=derivativeAtPoint(function, a),
         derB=derivativeAtPoint(function, b);
+
+       
         x0 = derA>derB?a:b;
         double lambda = -1/max(derA, derB);
         phi = x->x+lambda*function.call(x);
+
+        if(abs(derivativeAtPoint(phi, x0))>=1) throw new DivergeException();
         xk = x0;
         step(); 
         save();
