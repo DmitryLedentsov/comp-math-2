@@ -160,6 +160,7 @@ public class App {
             m.solve();
             out.print("решение: " + m.getSolution());
             out.print("вектор ошибок: " + m.getErrors());
+            out.print("количество итераций: "+ m.getN());
         }  
     }
 
