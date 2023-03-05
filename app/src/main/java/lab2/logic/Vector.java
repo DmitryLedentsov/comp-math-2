@@ -1,6 +1,5 @@
 package lab2.logic;
 
-import lab2.utils.DoubleFormatter;
 import lombok.Getter;
 import lombok.Setter;
 

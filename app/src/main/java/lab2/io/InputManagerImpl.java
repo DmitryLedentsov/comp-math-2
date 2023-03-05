@@ -2,14 +2,11 @@ package lab2.io;
 
 import java.util.Scanner;
 
-import org.jfree.chart.util.ArrayUtils;
-
 import lab2.app.BinaryEquations;
 import lab2.app.Equations;
 import lab2.app.Methods;
 import lab2.logic.BinaryFunction;
 import lab2.logic.NonlinearSystem;
-import lab2.logic.Vector;
 
 public abstract class InputManagerImpl implements InputManager{
     protected Scanner scanner;

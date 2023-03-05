@@ -1,7 +1,5 @@
 package lab2.logic;
 
-import java.util.List;
-
 import lombok.Getter;
 
 public class NonlinearSystem {

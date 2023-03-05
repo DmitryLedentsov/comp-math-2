@@ -4,7 +4,6 @@ import lab2.app.BinaryEquations;
 import lab2.app.Equations;
 import lab2.app.Methods;
 import lab2.logic.NonlinearSystem;
-import lab2.logic.methods.Method;
 
 public interface InputManager extends AutoCloseable{
 
