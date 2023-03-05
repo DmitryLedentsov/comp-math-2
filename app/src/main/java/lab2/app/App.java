@@ -134,6 +134,7 @@ public class App {
                 @Cleanup
                 OutputManager fout =new FileOutputManager(path);
 
+                //fout.print(m.getPrintableSolution());
                 fout.print(m.formatSolution());
          
             }
@@ -144,19 +145,7 @@ public class App {
 
         }
         else if(cmd == 2) {
-            String path = in.readPath();
-            try (InputManager fileInput = new FileInputManager(path)){
-                
-                printSolution();
-            } catch(FileNotFoundException e) {
-                out.error("Файл "+ path + " не найден");
-            } catch (IOException e) {
-                out.error("Ошибка при чтении файла " + path);
-            } catch (IllegalArgumentException e) {
-                out.error("Данные в файле некорректны: " + e.getMessage());
-            } catch (Exception e) {
-                out.error("Неизвестная ошибка");
-            }
+           
         }  
     }
 

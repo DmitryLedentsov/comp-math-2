@@ -14,10 +14,13 @@ public interface Function {
             if (n == 1) return (f.call(x + DELTA) - f.call(x)) / DELTA;
             return (derivativeAtPoint(f, n - 1, x + DELTA) - derivativeAtPoint(f, n - 1, x)) / DELTA;
         }
-        public static double derivativeAtPoint(Function f, double x){
+        /*public static double derivativeAtPoint(Function f, double x){
             return (f.call(x + DELTA) - f.call(x)) / DELTA;
-        }
+        }*/
         
+        public static double derivativeAtPoint(Function f, double x){
+            return (f.call(x + DELTA) - f.call(x-DELTA)) / (2*DELTA);
+        }
         public static Function phi(Function f, double x0) {
             return x -> (x + (-1 / derivativeAtPoint(f, x0)) * f.call(x));
            // return x -> (x + (-1 / derivativeAtPoint(f, x)) * f.call(x));

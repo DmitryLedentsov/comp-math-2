@@ -23,8 +23,11 @@ public interface Method {
 
     public default String formatSolution(){
         String s = "число итераций: " + getN() + "\n";
-        s+= "корень: " + getX();
+        s+= "корень: " + getX() + '\n';
+        s+= "значение функции в корне: " + getFX() + '\n';
         return s;
     }
-   
+    public default String getPrintableSolution(){
+        return "";
+    }
 }

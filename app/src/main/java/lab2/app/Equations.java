@@ -3,9 +3,19 @@ package lab2.app;
 import lab2.logic.Function;
 import lombok.Getter;
 import lombok.Setter;
-
+import static java.lang.Math.*;
+/*
+0 - x^3 + 2.28x^2 - 1.934x - 3.907
+1 - x^2 - 3x - 2
+2 - sin(x) - cos(x) + 0.2x
+3 - x^3 - x + 4
+ */
 public enum Equations {
-    FIRST(x->x,"x"), SECOND(x->x*x-5, "x^2-5");
+    FIRST(x->pow(x,3)+2.28*pow(x,2)-1.934*x-3.907, "x^3 + 2.28x^2 - 1.934x - 3.907"),
+    SECOND(x-> pow(x,2)-3*x-2, "x^2 - 3x - 2"),
+    THIRD(x->sin(x)-cos(x)+0.2*x, "sin(x) - cos(x) + 0.2x"),
+    FORTH(x->pow(x,3)-x+4, "x^3 - x + 4");
+    
    
 
     @Getter
