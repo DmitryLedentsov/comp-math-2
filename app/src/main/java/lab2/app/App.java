@@ -130,6 +130,7 @@ public class App {
          
             }
             out.print(m.formatSolution());
+            //out.print(m.getSolutionWay());
             
             
             
@@ -137,8 +138,12 @@ public class App {
         }
         else if(cmd == 2) {
             NonlinearSystem s = in.readNonlinearSystem();
-            double[] p= in.readPoint();
+            
 
+            Graph g = new Graph("График системы",0.01, 0.01);
+            g.system(-20, 20, -20, 20, s);
+            //g.setZoomable(false);
+            double[] p= in.readPoint();
             double accuracy = in.readAccuracy();
             
             NewtonMethod m = new NewtonMethod();
@@ -147,8 +152,9 @@ public class App {
             m.setY0(p[1]);
             m.setSystem(s);
 
-            Graph g = new Graph("График системы");
-            g.system(p[0]-5, p[0]+5, s);
+            g.close();
+            g = new Graph("График системы");
+            g.system(p[0]-5, p[0]+5, p[1]-5, p[1]+5, s);
 
             m.solve();
             out.print("решение: " + m.getSolution());

@@ -2,6 +2,7 @@ package lab2.logic.methods;
 
 import lab2.exceptions.DivergeException;
 import lab2.exceptions.IterationLimitExceedException;
+import lab2.exceptions.NoRootException;
 import lab2.logic.Function;
 
 import lombok.Getter;
@@ -75,7 +76,7 @@ public class SimpleIterMethod implements Method{
             step();
             save();
             n++;
-
+            if(!Double.isFinite(xk)) throw new NoRootException();
             if(n>MAX_ITERATIONS) throw new IterationLimitExceedException();
         }
         xk=xk1;

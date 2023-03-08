@@ -11,8 +11,8 @@ import static java.lang.Math.*;
 public enum BinaryEquations {
     FIRST((x,y)->pow(x, 2) + pow(y,2) - 4, "x^2 + y^2 - 4"),
     SECOND((x,y)->pow(x,3)+y-1, "x^3 + y - 1"),
-    THIRD((x,y)->pow(x,2)-y-3, "x^2 - y - 3");
-
+    THIRD((x,y)->pow(x,2)-y-3, "x^2 - y - 3"),
+    FIFTH((x,y)->pow(pow(x,2)+pow(y,2)-1,3) - pow(x,2)*pow(y,3), "сердечко");
     @Getter
     private final BinaryFunction function;
     @Getter

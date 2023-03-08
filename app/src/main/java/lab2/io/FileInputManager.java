@@ -9,6 +9,7 @@ import lab2.exceptions.FileException;
 
 public class FileInputManager  extends InputManagerImpl{
     String path;
+    
     public FileInputManager(String path) throws FileException {
         super();
         this.path = path; 

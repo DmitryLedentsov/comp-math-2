@@ -15,6 +15,7 @@ public enum Equations {
     THIRD(x->sin(x)-cos(x)+0.2*x, "sin(x) - cos(x) + 0.2x"),
     FORTH(x->pow(x,3)-x+4, "x^3 - x + 4");
     
+    
    
 
     @Getter
